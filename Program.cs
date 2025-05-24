@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore; // Necesario para EF Core
+using practica3.Data; // Importa tu DbContext
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+// Agrega el DbContext para guardar feedback usando SQLite
+builder.Services.AddDbContext<FeedbackDbContext>(options =>
+    options.UseSqlite("Data Source=feedback.db"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
